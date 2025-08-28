@@ -31,6 +31,15 @@ const translations = {
     video_play_aria: "Reproducir video",
     services_title: "¿Por qué elegirnos?",
     services_subtitle: "Descubre por qué nuestra casa rural es el refugio perfecto para tu bienestar, tu familia y tus recuerdos.",
+    services_peace_title: "Paz y Desconexión Absoluta",
+    services_peace_description: "Aléjate del ruido y el estrés de la ciudad. Aquí el único despertador es el canto de los pájaros. Disfruta de un entorno donde se respira tranquilidad y el tiempo transcurre sin prisas.",
+    services_peace_highlight: "Sin ruidos urbanos",
+    services_nature_title: "Entorno Natural Privilegiado", 
+    services_nature_description: "Despierta rodeado por una dehesa con caballos y un lago con patos. Un paisaje extremeño único a tu puerta, ideal para pasear, observar aves y reconectar con la naturaleza.",
+    services_nature_highlight: "Fauna autóctona",
+    services_security_title: "Seguridad para Toda la Familia",
+    services_security_description: "Nuestra finca está completamente vallada, creando un espacio seguro para que los niños jueguen con total libertad. La tranquilidad de los padres están garantizadas.",
+    services_security_highlight: "100% seguro",
     about_section_title: "Nuestra Historia",
     service1_title: "Paz y Desconexión Absoluta",
     service1_desc: "Aléjate del ruido y el estrés de la ciudad. Aquí el único despertador es el canto de los pájaros. Disfruta de un entorno donde se respira tranquilidad y el tiempo transcurre sin prisas.",
@@ -114,9 +123,9 @@ const translations = {
     footer_availability_checkin: "Check-in: 16:00h",
     footer_availability_checkout: "Check-out: 11:00h",
     footer_reviews_title: "Nuestros huéspedes",
-    footer_reviews_rating: "5.0 (150+ reseñas)",
+    footer_reviews_rating: "5.0 (Excelentes valoraciones)",
     footer_reviews_quote: "Un lugar perfecto para desconectar y disfrutar de la naturaleza.",
-    footer_copyright: "© 2024 Casa Lago Guijo de Coria. Todos los derechos reservados."
+    footer_copyright: `© ${new Date().getFullYear()} Casa Lago Guijo de Coria. Todos los derechos reservados.`
   },
   en: {
     nav_inicio: "Home",
@@ -140,6 +149,15 @@ const translations = {
     video_play_aria: "Play video",
     services_title: "Why choose us?",
     services_subtitle: "Discover why our rural house is the perfect refuge for your well-being, your family and your memories.",
+    services_peace_title: "Peace and Total Disconnection",
+    services_peace_description: "Get away from city noise and stress. Here the only alarm clock is birdsong. Enjoy an environment where tranquility breathes and time passes without rush.",
+    services_peace_highlight: "No urban noise",
+    services_nature_title: "Privileged Natural Environment", 
+    services_nature_description: "Wake up surrounded by a meadow with horses and a lake with ducks. A unique Extremadura landscape at your door, ideal for walking, bird watching and reconnecting with nature.",
+    services_nature_highlight: "Native wildlife",
+    services_security_title: "Safety for the Whole Family",
+    services_security_description: "Our property is completely fenced, creating a safe space for children to play with complete freedom. Parents' peace of mind is guaranteed.",
+    services_security_highlight: "100% safe",
     about_section_title: "Our Story",
     service1_title: "Absolute Peace and Disconnection",
     service1_desc: "Get away from the noise and stress of the city. Here the only alarm clock is the singing of birds. Enjoy an environment where you breathe tranquility and time passes without haste.",
@@ -223,9 +241,9 @@ const translations = {
     footer_availability_checkin: "Check-in: 4:00 PM",
     footer_availability_checkout: "Check-out: 11:00 AM",
     footer_reviews_title: "Our Guests",
-    footer_reviews_rating: "5.0 (150+ reviews)",
+    footer_reviews_rating: "5.0 (Excellent ratings)",
     footer_reviews_quote: "A perfect place to disconnect and enjoy nature.",
-    footer_copyright: "© 2024 Casa Lago Guijo de Coria. All rights reserved."
+    footer_copyright: `© ${new Date().getFullYear()} Casa Lago Guijo de Coria. All rights reserved.`
   }
 };
 

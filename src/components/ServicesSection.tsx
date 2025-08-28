@@ -13,21 +13,21 @@ const ServicesSection: React.FC = () => {
   const services = [
     {
       icon: Bird,
-      title: "Paz y Desconexión Absoluta",
-      description: "Aléjate del ruido y el estrés de la ciudad. Aquí el único despertador es el canto de los pájaros. Disfruta de un entorno donde se respira tranquilidad y el tiempo transcurre sin prisas.",
-      highlight: "Sin ruidos urbanos"
+      title: t('services_peace_title'),
+      description: t('services_peace_description'),
+      highlight: t('services_peace_highlight')
     },
     {
       icon: Trees,
-      title: "Entorno Natural Privilegiado",
-      description: "Despierta rodeado por una dehesa con caballos y un lago con patos. Un paisaje extremeño único a tu puerta, ideal para pasear, observar aves y reconectar con la naturaleza.",
-      highlight: "Fauna autóctona"
+      title: t('services_nature_title'),
+      description: t('services_nature_description'),
+      highlight: t('services_nature_highlight')
     },
     {
       icon: Shield,
-      title: "Seguridad para Toda la Familia",
-      description: "Nuestra finca está completamente vallada, creando un espacio seguro para que los niños jueguen con total libertad. La tranquilidad de los padres están garantizadas.",
-      highlight: "100% seguro"
+      title: t('services_security_title'),
+      description: t('services_security_description'),
+      highlight: t('services_security_highlight')
     },
   ];
 

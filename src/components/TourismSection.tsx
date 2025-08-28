@@ -17,7 +17,11 @@ const TourismSection: React.FC = () => {
             <p className="text-lg md:text-xl text-foreground leading-relaxed mb-8">
               {t('tourism_subtitle')}
             </p>
-            <Button variant="cta" size="lg">
+            <Button 
+              variant="cta" 
+              size="lg"
+              onClick={() => window.open('https://maps.google.com/?q=Casa+Lago+Guijo+de+Coria,+Av.+España,+1,+10815+Guijo+de+Coria,+Cáceres', '_blank')}
+            >
               {t('tourism_discover_caceres')}
             </Button>
           </div>
