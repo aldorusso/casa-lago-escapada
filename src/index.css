@@ -37,6 +37,16 @@
     --lake-blue: 200 85% 40%;
     --lake-blue-foreground: 30 15% 97%;
 
+    /* Gradients for modern effects */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-nature: linear-gradient(135deg, hsl(var(--nature-green)), hsl(var(--nature-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--lake-blue)));
+
+    /* Shadows */
+    --shadow-soft: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-medium: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-large: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
     /* Earth tones for variety */
     --earth-brown: 25 40% 35%;
     --earth-light: 35 30% 75%;
