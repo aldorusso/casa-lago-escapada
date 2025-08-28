@@ -2,41 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Casa Lago Design System - Natural colors inspired by Extremadura landscape */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors - warm cream/beige for backgrounds */
+    --background: 30 15% 97%;
+    --foreground: 25 35% 15%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card colors - soft natural tones */
+    --card: 28 20% 98%;
+    --card-foreground: 25 35% 15%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 28 20% 98%;
+    --popover-foreground: 25 35% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - deep forest green representing the dehesa */
+    --primary: 140 45% 25%;
+    --primary-foreground: 30 15% 97%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - warm earth tones */
+    --secondary: 35 25% 85%;
+    --secondary-foreground: 25 35% 15%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted - soft beige tones */
+    --muted: 35 20% 92%;
+    --muted-foreground: 25 25% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - lake blue for highlights */
+    --accent: 200 70% 45%;
+    --accent-foreground: 30 15% 97%;
+
+    /* Lake blue variant for CTAs */
+    --lake-blue: 200 85% 40%;
+    --lake-blue-foreground: 30 15% 97%;
+
+    /* Earth tones for variety */
+    --earth-brown: 25 40% 35%;
+    --earth-light: 35 30% 75%;
+    
+    /* Nature green shades */
+    --nature-green: 140 50% 30%;
+    --nature-light: 140 30% 85%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 30 15% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 35 15% 88%;
+    --input: 35 15% 90%;
+    --ring: 140 45% 25%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
