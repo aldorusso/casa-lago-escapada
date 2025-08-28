@@ -3,19 +3,51 @@ import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/components/LanguageToggle';
 import heroImage from '@/assets/hero/hero-principal.jpg';
 
+interface TrailPoint {
+  x: number;
+  y: number;
+  timestamp: number;
+  id: number;
+}
+
 const HeroSection: React.FC = () => {
   const { t } = useLanguage();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [mousePosition, setMousePosition] = useState({ x: 0.5, y: 0.5 });
   const [isHovered, setIsHovered] = useState(false);
+  const [trailPoints, setTrailPoints] = useState<TrailPoint[]>([]);
+  const [lastMouseTime, setLastMouseTime] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
+  const animationRef = useRef<number>();
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (heroRef.current) {
         const rect = heroRef.current.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width;
-        const y = (e.clientY - rect.top) / rect.height;
-        setMousePosition({ x, y });
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const normalizedX = x / rect.width;
+        const normalizedY = y / rect.height;
+        
+        setMousePosition({ x: normalizedX, y: normalizedY });
+        
+        const now = Date.now();
+        // Solo agregar puntos si ha pasado suficiente tiempo (para controlar densidad)
+        if (now - lastMouseTime > 20) { // 50fps max
+          const newPoint: TrailPoint = {
+            x,
+            y,
+            timestamp: now,
+            id: Math.random()
+          };
+          
+          setTrailPoints(prev => {
+            // Mantener solo los últimos 30 puntos
+            const filtered = prev.filter(point => now - point.timestamp < 2000);
+            return [...filtered, newPoint].slice(-30);
+          });
+          
+          setLastMouseTime(now);
+        }
       }
     };
 
@@ -31,63 +63,203 @@ const HeroSection: React.FC = () => {
         heroElement.removeEventListener('mouseleave', () => setIsHovered(false));
       };
     }
+  }, [lastMouseTime]);
+
+  // Trail cleanup animation
+  useEffect(() => {
+    const cleanup = () => {
+      const now = Date.now();
+      setTrailPoints(prev => prev.filter(point => now - point.timestamp < 2000));
+      animationRef.current = requestAnimationFrame(cleanup);
+    };
+
+    cleanup();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
   }, []);
+
+  // Generate trail path for SVG
+  const generateTrailPath = () => {
+    if (trailPoints.length < 2) return '';
+    
+    let path = `M ${trailPoints[0].x} ${trailPoints[0].y}`;
+    
+    for (let i = 1; i < trailPoints.length; i++) {
+      const current = trailPoints[i];
+      const previous = trailPoints[i - 1];
+      
+      // Crear curvas suaves entre puntos
+      const cpx = (previous.x + current.x) / 2;
+      const cpy = (previous.y + current.y) / 2;
+      
+      path += ` Q ${previous.x} ${previous.y} ${cpx} ${cpy}`;
+    }
+    
+    return path;
+  };
 
   return (
     <section 
       ref={heroRef}
       id="inicio" 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24 cursor-none"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24"
     >
-      {/* Background Image with Parallax Effect */}
+      {/* Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url(${heroImage})`,
-          transform: `scale(${isHovered ? 1.03 : 1.01}) translate(${mousePosition.x * 8 - 4}px, ${mousePosition.y * 8 - 4}px)`
+          transform: `scale(${1.02 + (mousePosition.x - 0.5) * 0.02})`,
+          transition: 'transform 0.3s ease-out'
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/25 to-black/60" />
       </div>
 
-      {/* Floating Interactive Elements */}
-      <div className="absolute inset-0 pointer-events-none">        
-        {/* Particle Effect - Más sutil */}
-        {[...Array(5)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-white/10 rounded-full transition-all duration-1000"
-            style={{
-              top: `${30 + i * 15}%`,
-              left: `${20 + i * 12}%`,
-              transform: `translate(${mousePosition.x * (8 + i * 2)}px, ${mousePosition.y * (5 + i * 2)}px)`,
-              opacity: isHovered ? 0.3 : 0.1
-            }}
+      {/* SVG Trail Container */}
+      <svg
+        className="absolute inset-0 pointer-events-none"
+        width="100%"
+        height="100%"
+        style={{ zIndex: 5 }}
+      >
+        <defs>
+          <linearGradient id="trailGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="rgba(131, 126, 105, 0)" />
+            <stop offset="20%" stopColor="rgba(131, 126, 105, 0.3)" />
+            <stop offset="50%" stopColor="rgba(255, 255, 255, 0.8)" />
+            <stop offset="80%" stopColor="rgba(131, 126, 105, 0.6)" />
+            <stop offset="100%" stopColor="rgba(255, 255, 255, 0.9)" />
+          </linearGradient>
+          
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+            <feMerge> 
+              <feMergeNode in="coloredBlur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+        </defs>
+        
+        {/* Main Trail Path */}
+        {trailPoints.length > 1 && (
+          <path
+            d={generateTrailPath()}
+            stroke="url(#trailGradient)"
+            strokeWidth="3"
+            fill="none"
+            filter="url(#glow)"
+            opacity="0.9"
           />
-        ))}
+        )}
+      </svg>
+
+      {/* Individual Trail Points */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 10 }}>
+        {trailPoints.map((point, index) => {
+          const age = Date.now() - point.timestamp;
+          const maxAge = 2000;
+          const progress = age / maxAge;
+          const opacity = Math.max(0, 1 - progress);
+          const size = Math.max(2, 12 * (1 - progress));
+          
+          return (
+            <div
+              key={point.id}
+              className="absolute rounded-full pointer-events-none"
+              style={{
+                left: point.x,
+                top: point.y,
+                width: `${size}px`,
+                height: `${size}px`,
+                transform: 'translate(-50%, -50%)',
+                background: `
+                  radial-gradient(
+                    circle,
+                    rgba(255, 255, 255, ${opacity * 0.9}) 0%,
+                    rgba(131, 126, 105, ${opacity * 0.7}) 30%,
+                    rgba(255, 255, 255, ${opacity * 0.4}) 70%,
+                    transparent 100%
+                  )
+                `,
+                boxShadow: `
+                  0 0 ${size * 2}px rgba(255, 255, 255, ${opacity * 0.6}),
+                  0 0 ${size * 4}px rgba(131, 126, 105, ${opacity * 0.4})
+                `,
+                filter: `blur(${(1 - opacity) * 2}px)`,
+                opacity: opacity,
+                transition: 'opacity 0.1s ease-out'
+              }}
+            />
+          );
+        })}
       </div>
 
-      {/* Custom Cursor */}
+      {/* Ambient Light Effects */}
+      <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 3 }}>
+        {trailPoints.slice(-5).map((point, index) => {
+          const age = Date.now() - point.timestamp;
+          const progress = age / 1000;
+          const opacity = Math.max(0, 0.3 * (1 - progress));
+          
+          return (
+            <div
+              key={`ambient-${point.id}`}
+              className="absolute rounded-full pointer-events-none"
+              style={{
+                left: point.x,
+                top: point.y,
+                width: '60px',
+                height: '60px',
+                transform: 'translate(-50%, -50%)',
+                background: `
+                  radial-gradient(
+                    circle,
+                    rgba(131, 126, 105, ${opacity}) 0%,
+                    rgba(255, 255, 255, ${opacity * 0.5}) 50%,
+                    transparent 100%
+                  )
+                `,
+                filter: 'blur(15px)',
+                opacity: opacity,
+                mixBlendMode: 'soft-light'
+              }}
+            />
+          );
+        })}
+      </div>
+
+      {/* Current Mouse Position Glow */}
       {isHovered && (
         <div 
-          className="absolute pointer-events-none z-50 mix-blend-difference"
+          className="absolute pointer-events-none"
           style={{
             left: `${mousePosition.x * 100}%`,
             top: `${mousePosition.y * 100}%`,
-            transform: 'translate(-50%, -50%)'
+            width: '40px',
+            height: '40px',
+            transform: 'translate(-50%, -50%)',
+            background: `
+              radial-gradient(
+                circle,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(131, 126, 105, 0.6) 40%,
+                transparent 100%
+              )
+            `,
+            boxShadow: `
+              0 0 20px rgba(255, 255, 255, 0.8),
+              0 0 40px rgba(131, 126, 105, 0.4)
+            `,
+            borderRadius: '50%',
+            zIndex: 15
           }}
-        >
-          <div className="w-8 h-8 border-2 border-white rounded-full backdrop-blur-sm animate-pulse" />
-        </div>
+        />
       )}
-
-      {/* Gradient Overlay with Interactive Effect - Más sutil */}
-      <div 
-        className="absolute inset-0 transition-all duration-700"
-        style={{
-          background: `radial-gradient(800px circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(131, 126, 105, 0.05) 0%, transparent 60%)`
-        }}
-      />
       
       <div className="relative z-10 text-center text-white px-4 max-w-5xl mx-auto">
         <h1 className="font-title text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-none tracking-tight">
