@@ -1,6 +1,11 @@
 import React from 'react';
 import { useLanguage } from '@/components/LanguageToggle';
-import { Bird, Trees, Shield } from 'lucide-react';
+import { 
+  Bird, Trees, Shield, Snowflake, Heart, Car, Bath, Thermometer, 
+  ChefHat, CreditCard, Bike, Flower2, SmokingIcon, Wifi, Tv, 
+  MapPin, Baby, XCircle, UtensilsCrossed, Monitor, Route,
+  CheckCircle, Calendar
+} from 'lucide-react';
 
 const ServicesSection: React.FC = () => {
   const { t, language } = useLanguage();
@@ -26,6 +31,28 @@ const ServicesSection: React.FC = () => {
     },
   ];
 
+  const amenities = [
+    { icon: Snowflake, name: "Aire acondicionado" },
+    { icon: Heart, name: "Pet Friendly" },
+    { icon: Car, name: "Aparcamiento" },
+    { icon: Bath, name: "Baño privado" },
+    { icon: Thermometer, name: "Calefacción" },
+    { icon: ChefHat, name: "Barbacoa" },
+    { icon: CreditCard, name: "Acepta tarjeta" },
+    { icon: Bike, name: "Bicicletas eléctricas" },
+    { icon: Flower2, name: "Jardín" },
+    { icon: XCircle, name: "Habitaciones sin humo" },
+    { icon: Monitor, name: "Terraza" },
+    { icon: Baby, name: "Cuna" },
+    { icon: CheckCircle, name: "Cancelación gratuita" },
+    { icon: UtensilsCrossed, name: "Cocina americana" },
+    { icon: Tv, name: "Televisor" },
+    { icon: Route, name: "Rutas" },
+    { icon: Wifi, name: "Wifi Gratis" },
+    { icon: MapPin, name: "Patio" },
+    { icon: Calendar, name: "Reserva Online" }
+  ];
+
   return (
     <section id="servicios" className="py-24 bg-gradient-to-b from-background to-muted/20">
       <div className="container mx-auto px-4">
@@ -41,7 +68,7 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
         
-        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto mb-20">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
@@ -63,6 +90,33 @@ const ServicesSection: React.FC = () => {
               </div>
             );
           })}
+        </div>
+
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h3 className="font-title text-3xl font-bold text-primary mb-4">
+              {language === 'es' ? 'Comodidades y Servicios' : 'Amenities & Services'}
+            </h3>
+            <p className="text-lg text-muted-foreground">
+              {language === 'es' ? 'Todo lo que necesitas para una estancia perfecta' : 'Everything you need for a perfect stay'}
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            {amenities.map((amenity, index) => {
+              const IconComponent = amenity.icon;
+              return (
+                <div key={index} className="group bg-card/50 rounded-xl p-6 text-center hover:bg-card transition-all duration-300 border border-border/30 hover:border-accent/40 hover:shadow-md">
+                  <div className="inline-flex items-center justify-center w-12 h-12 bg-earth-brown/10 text-earth-brown rounded-xl group-hover:bg-earth-brown group-hover:text-primary-foreground transition-all duration-300 mb-3">
+                    <IconComponent className="w-6 h-6" />
+                  </div>
+                  <p className="text-sm font-medium text-primary group-hover:text-earth-brown transition-colors duration-300">
+                    {amenity.name}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
