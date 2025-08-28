@@ -68,7 +68,7 @@ const Navigation: React.FC = () => {
               <img 
                 src={logo} 
                 alt="Casa Lago Guijo de Coria" 
-                className="h-20 w-auto group-hover:scale-105 transition-transform"
+                className="h-24 w-auto group-hover:scale-105 transition-transform"
               />
             </button>
             

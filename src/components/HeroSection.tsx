@@ -44,50 +44,24 @@ const HeroSection: React.FC = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-700 ease-out"
         style={{ 
           backgroundImage: `url(${heroImage})`,
-          transform: `scale(${isHovered ? 1.05 : 1.02}) translate(${mousePosition.x * 15 - 7.5}px, ${mousePosition.y * 15 - 7.5}px)`
+          transform: `scale(${isHovered ? 1.03 : 1.01}) translate(${mousePosition.x * 8 - 4}px, ${mousePosition.y * 8 - 4}px)`
         }}
       >
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/50" />
       </div>
 
       {/* Floating Interactive Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Animated Circles */}
-        <div 
-          className="absolute w-32 h-32 border border-white/10 rounded-full backdrop-blur-sm transition-all duration-1000"
-          style={{
-            top: '20%',
-            left: '10%',
-            transform: `translate(${mousePosition.x * 30}px, ${mousePosition.y * 30}px) scale(${isHovered ? 1.2 : 1})`
-          }}
-        />
-        <div 
-          className="absolute w-20 h-20 bg-white/5 rounded-full backdrop-blur-sm transition-all duration-700"
-          style={{
-            top: '60%',
-            right: '15%',
-            transform: `translate(${mousePosition.x * -20}px, ${mousePosition.y * -20}px) scale(${isHovered ? 1.3 : 1})`
-          }}
-        />
-        <div 
-          className="absolute w-16 h-16 border-2 border-accent/30 rounded-full backdrop-blur-sm transition-all duration-500"
-          style={{
-            bottom: '25%',
-            left: '20%',
-            transform: `translate(${mousePosition.x * 25}px, ${mousePosition.y * 25}px) rotate(${mousePosition.x * 180}deg)`
-          }}
-        />
-        
-        {/* Particle Effect */}
-        {[...Array(8)].map((_, i) => (
+      <div className="absolute inset-0 pointer-events-none">        
+        {/* Particle Effect - Más sutil */}
+        {[...Array(5)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-1 h-1 bg-white/20 rounded-full transition-all duration-1000"
+            className="absolute w-1 h-1 bg-white/10 rounded-full transition-all duration-1000"
             style={{
-              top: `${20 + i * 10}%`,
-              left: `${10 + i * 8}%`,
-              transform: `translate(${mousePosition.x * (15 + i * 5)}px, ${mousePosition.y * (10 + i * 3)}px)`,
-              opacity: isHovered ? 0.6 : 0.2
+              top: `${30 + i * 15}%`,
+              left: `${20 + i * 12}%`,
+              transform: `translate(${mousePosition.x * (8 + i * 2)}px, ${mousePosition.y * (5 + i * 2)}px)`,
+              opacity: isHovered ? 0.3 : 0.1
             }}
           />
         ))}
@@ -107,11 +81,11 @@ const HeroSection: React.FC = () => {
         </div>
       )}
 
-      {/* Gradient Overlay with Interactive Effect */}
+      {/* Gradient Overlay with Interactive Effect - Más sutil */}
       <div 
         className="absolute inset-0 transition-all duration-700"
         style={{
-          background: `radial-gradient(600px circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(131, 126, 105, 0.1) 0%, transparent 50%)`
+          background: `radial-gradient(800px circle at ${mousePosition.x * 100}% ${mousePosition.y * 100}%, rgba(131, 126, 105, 0.05) 0%, transparent 60%)`
         }}
       />
       
@@ -122,16 +96,6 @@ const HeroSection: React.FC = () => {
         <p className="text-lg md:text-xl mb-8 font-light leading-relaxed max-w-3xl mx-auto opacity-95">
           Apartamentos rurales en Guijo de Coria, un refugio de paz rodeado de la dehesa extremeña.
         </p>
-        <div className="flex items-center justify-center gap-2 mb-12 text-yellow-300">
-          <div className="flex">
-            {[1, 2, 3, 4, 5].map((star) => (
-              <svg key={star} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
-              </svg>
-            ))}
-          </div>
-          <span className="ml-2 text-sm">150 reviews</span>
-        </div>
         <div className="flex flex-col sm:flex-row gap-6 justify-center">
           <Button 
             variant="hero" 

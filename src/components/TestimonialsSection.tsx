@@ -28,7 +28,7 @@ const TestimonialsSection: React.FC = () => {
               "Un lugar perfecto para desconectar. La tranquilidad del entorno y la comodidad de los apartamentos nos hicieron sentir como en casa. Volveremos sin duda."
             </blockquote>
             <div className="text-center">
-              <p className="font-semibold text-primary text-sm">Ana & Miguel</p>
+              <p className="font-semibold text-primary text-sm">Familia Escribano</p>
               <p className="text-muted-foreground text-xs">Madrid</p>
             </div>
           </div>
@@ -43,7 +43,7 @@ const TestimonialsSection: React.FC = () => {
               "Ideal para ir con niños. La finca vallada nos dio mucha tranquilidad y ellos pudieron jugar con total libertad. El entorno natural es espectacular."
             </blockquote>
             <div className="text-center">
-              <p className="font-semibold text-primary text-sm">Familia González</p>
+              <p className="font-semibold text-primary text-sm">Familia Russo Suárez</p>
               <p className="text-muted-foreground text-xs">Sevilla</p>
             </div>
           </div>
@@ -58,7 +58,7 @@ const TestimonialsSection: React.FC = () => {
               "La dehesa extremeña en estado puro. Despertar con el canto de los pájaros y ver los caballos pastando es una experiencia única. Muy recomendable."
             </blockquote>
             <div className="text-center">
-              <p className="font-semibold text-primary text-sm">Carmen & José</p>
+              <p className="font-semibold text-primary text-sm">Familia Montes de Oca</p>
               <p className="text-muted-foreground text-xs">Barcelona</p>
             </div>
           </div>
