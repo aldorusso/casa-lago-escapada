@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -17,8 +19,8 @@
     --popover: 28 20% 98%;
     --popover-foreground: 25 35% 15%;
 
-    /* Primary - deep forest green representing the dehesa */
-    --primary: 140 45% 25%;
+    /* Primary - warm brown representing Casa Lago brand */
+    --primary: 34 15% 52%;
     --primary-foreground: 30 15% 97%;
 
     /* Secondary - warm earth tones */
@@ -60,7 +62,7 @@
 
     --border: 35 15% 88%;
     --input: 35 15% 90%;
-    --ring: 140 45% 25%;
+    --ring: 34 15% 52%;
 
     --radius: 0.75rem;
 
@@ -127,5 +129,10 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .font-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
   }
 }

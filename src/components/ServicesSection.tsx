@@ -3,25 +3,25 @@ import { useLanguage } from '@/components/LanguageToggle';
 import { Bird, Trees, Shield } from 'lucide-react';
 
 const ServicesSection: React.FC = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const services = [
     {
       icon: Bird,
-      title: t('service1_title'),
-      description: t('service1_desc'),
+      title: "Paz y Desconexión Absoluta",
+      description: "Aléjate del ruido y el estrés de la ciudad. Aquí el único despertador es el canto de los pájaros. Disfruta de un entorno donde se respira tranquilidad y el tiempo transcurre sin prisas.",
       highlight: "Sin ruidos urbanos"
     },
     {
       icon: Trees,
-      title: t('service2_title'),
-      description: t('service2_desc'),
+      title: "Entorno Natural Privilegiado",
+      description: "Despierta rodeado por una dehesa con caballos y un lago con patos. Un paisaje extremeño único a tu puerta, ideal para pasear, observar aves y reconectar con la naturaleza.",
       highlight: "Fauna autóctona"
     },
     {
       icon: Shield,
-      title: t('service3_title'),
-      description: t('service3_desc'),
+      title: "Seguridad para Toda la Familia",
+      description: "Nuestra finca está completamente vallada, creando un espacio seguro para que los niños jueguen con total libertad. La tranquilidad de los padres están garantizadas.",
       highlight: "100% seguro"
     },
   ];
@@ -31,11 +31,14 @@ const ServicesSection: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="text-center mb-20">
           <p className="text-accent font-medium mb-4 tracking-wide uppercase text-sm">
-            Experiencias Únicas
+            {language === 'es' ? 'La escapada que necesitas' : 'The getaway you need'}
           </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-primary mb-6">
+          <h2 className="font-title text-4xl md:text-5xl font-bold text-primary mb-6">
             {t('services_title')}
           </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            {t('services_subtitle')}
+          </p>
         </div>
         
         <div className="grid lg:grid-cols-3 gap-8 max-w-7xl mx-auto">

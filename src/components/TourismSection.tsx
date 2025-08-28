@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '@/components/LanguageToggle';
 import { Button } from '@/components/ui/button';
-import caceresImage from '@/assets/caceres-heritage.jpg';
+
 
 const TourismSection: React.FC = () => {
   const { t } = useLanguage();
@@ -18,17 +18,19 @@ const TourismSection: React.FC = () => {
               {t('tourism_subtitle')}
             </p>
             <Button variant="cta" size="lg">
-              Descubre Cáceres
+              {t('tourism_discover_caceres')}
             </Button>
           </div>
           
           <div className="relative">
-            <img 
-              src={caceresImage} 
-              alt="Cáceres UNESCO World Heritage" 
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3051.6242193515113!2d-6.4653299085233655!3d40.10609050098895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd3de0f2eca9d825%3A0xc488cbf12e00d5cc!2sAv.%20Espa%C3%B1a%2C%201%2C%2010815%20Guijo%20de%20Coria%2C%20C%C3%A1ceres!5e0!3m2!1ses!2ses!4v1756374508280!5m2!1ses!2ses"
               className="rounded-lg shadow-xl w-full h-64 md:h-80 object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
+              style={{ border: 0 }}
+              allowFullScreen={true}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>

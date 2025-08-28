@@ -9,6 +9,7 @@ import FAQSection from '@/components/FAQSection';
 import TourismSection from '@/components/TourismSection';
 import GallerySection from '@/components/GallerySection';
 import ContactSection from '@/components/ContactSection';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const Index = () => {
   return (
@@ -23,6 +24,7 @@ const Index = () => {
         <TourismSection />
         <GallerySection />
         <ContactSection />
+        <WhatsAppButton />
       </div>
     </LanguageProvider>
   );
